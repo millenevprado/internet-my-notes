@@ -14,6 +14,18 @@ Referências utilizadas para o desenvolvimento dessas anotações estão dispon�
 
 [ENCONTRANDO COMPUTADORES](#encontrando_computadores)
 
+[ACESSANDO UM SERVIDOR](#acessando_servidor)
+
+[ENTENDENDO OS PROTOCOLOS](#protocolos)
+
+[COMO A WEB FUNCIONA](#web)
+
+[MENSAGENS HTTP](#http)
+
+[MÉTODOS DE SOLICITAÇÃO HTTP (<em>REQUEST METHODS</em>)](#metodos_solicitacao)
+
+[CÓDIGOS DE <em>STATUS</em> DE RESPOSTAS HTTP](#codigos_status)
+
 <hr>
 
 <h2> <a name = "internet"></a>O QUE É A INTERNET </h2>
@@ -69,7 +81,7 @@ Para enviar uma mensagem para um computador, é preciso especificar qual é este
 
 Os IPs mais antigos (**IPv4**) usam 4 octetos, que são conjuntos de 8 bits separados por pontos, totalizando 32 bits por identificador. Os IPs mais modernos (**IPv6**), usam 128 bits ao todo (o que é 4x mais bits que o IPv4).
 
-## ACESSANDO UM SERVIDOR
+<h2> <a name = "acessando_servidor"></a>ACESSANDO UM SERVIDOR</h2>
 
 ![](imagens/servidor.png)
 
@@ -82,7 +94,7 @@ Vamos imaginar um simples cenário: você está no ponto A e quer acessar o site
 5. Assim que chega uma solicitação ao **ponto D**, ele vai procurar a página solicitada e te enviar uma cópia do documento para o seu computador.
 6. Agora que o seu computador no **ponto A** tem o arquivo HTML, vai poder analisá-lo para descobrir que arquivos extras ele vai precisar (fotos, vídeos, estilos, etc.). A partir daí ele vai fazer outras solicitações ao **ponto D**, para que ele possa enviar esses recursos extras. É por conta disso que os sites que você visita vão aparecendo aos poucos.
 
-## ENTENDENDO OS PROTOCOLOS
+<h2> <a name = "protocolos"></a>ENTENDENDO OS PROTOCOLOS</h2>
 
 Para que esse emaranhado de redes, cabos e dados funcione, a Internet é estruturada a partir de vários protocolos. 
 
@@ -94,7 +106,7 @@ O protocolo HTTP define, entre outras formalidades, como são requisitadas as p�
 
 Nesse sentido, um novo protocolo foi pensado e desenvolvido, o HTTPS. Ele insere uma camada de proteção na transmissão de dados entre seu computador e o servidor. Em páginas com endereço HTTPS, a comunicação é criptografada, aumentando significativamente a segurança dos dados. O HTTPS também é importante para autenticar a página acessada.
 
-## COMO A WEB FUNCIONA
+<h2> <a name = "web"></a>COMO A WEB FUNCIONA</h2>
 
 Computadores conectados à web são chamados de **clientes** e **servidores**.
 
@@ -132,7 +144,7 @@ Entre o cliente e o servidor existem inúmeras entidades, chamadas coletivamente
 
 Na realidade, há mais computadores entre um navegador e o servidor que trata da solicitação: há roteadores, modems e muito mais. Graças ao design em camadas da Web, eles estão ocultos nas camadas de rede e de transporte. O HTTP está no topo, na camada do aplicativo. Embora importante para diagnosticar problemas de rede, as camadas subjacentes são principalmente irrelevantes para a descrição de HTTP.
 
-## MENSAGENS HTTP
+<h2> <a name = "http"></a>MENSAGENS HTTP</h2>
 
 As mensagens HTTP, conforme definidas em HTTP/1.1 e anteriores, são legíveis por humanos. No HTTP/2, essas mensagens são embutidas em uma estrutura binária, um quadro (frame), permitindo otimizações como compactação de cabeçalhos e multiplexação (técnica utilizada para permitir que mais de uma mensagem ocupe o mesmo meio de transporte). Mesmo que apenas parte da mensagem HTTP original seja enviada nesta versão do HTTP, a semântica de cada mensagem permanece inalterada e o cliente reconstitui (virtualmente) a solicitação HTTP/1.1 original. Portanto, é útil compreender mensagens HTTP/2 no formato HTTP/1.1.
 
@@ -158,7 +170,7 @@ Existem dois tipos de mensagens HTTP, **solicitações** e **respostas**, cada u
 
 ![](imagens/response.png)
 
-## MÉTODOS DE SOLICITAÇÃO HTTP (*REQUEST METHODS*)
+<h2> <a name = "metodos_solicitacao"></a>MÉTODOS DE SOLICITAÇÃO HTTP (<em>REQUEST METHODS</em>)</h2>
 
 O HTTP define um conjunto de métodos de solicitação para indicar a ação desejada a ser executada para um determinado recurso. Embora também possam ser substantivos, esses métodos de solicitação às vezes são chamados de verbos HTTP. Cada um deles implementa uma semântica diferente, mas algumas características comuns são compartilhadas por um grupo deles: por exemplo, um método de solicitação pode ser seguro, idempotente ou armazenável em cache.
 
@@ -172,19 +184,23 @@ O HTTP define um conjunto de métodos de solicitação para indicar a ação des
 - **TRACE:** O método TRACE executa um teste de loopback de mensagem ao longo do caminho para o recurso de destino.
 - **PATC:** O método PATCH é usado para aplicar modificações parciais a um recurso.
 
-## CÓDIGOS DE *STATUS* DE RESPOSTAS HTTP
+<h2> <a name = "codigos_status"></a>CÓDIGOS DE <em>STATUS</em> DE RESPOSTAS HTTP</h2>
 
 Os códigos de *status* das respostas HTTP indicam se uma requisição HTTP foi corretamente concluída. As respostas são agrupadas em cinco classes:
 
 - **Classe de status 1xx – INFORMATIVA:** indica que a solicitação foi recebida e que o servidor está pronto para dar continuidade ao processo. Os códigos mais comuns são: 100 Continuar; 102 Processando.
+
 - **Classe de status 2xx – SUCESSO:** indica que a solicitação foi recebida, entendida e que será processada com êxito pelo servidor. Os códigos mais comuns são: 200 OK; 202 Aceito.
+
 - **Classe de status 3xx –** **REDIRECIONAMENTO:** indica que você será redirecionado a outra página. Isso acontece, por exemplo, quando a URL que você pesquisou foi alterada, mas o administrador do site te redireciona para a página atual. Dessa forma, surgem os erros 3xx. Os códigos mais comuns são: 301 Movido Permanentemente; 302 Encontrado; 307 Redirecionamento Temporário.
+
 - **Classe de status 4xx –** **ERRO DO CLIENTE:** indica que o servidor não conseguiu processar a solicitação porque o cliente a fez de forma errada ou que não dependa dele, como por exemplo uma página excluída. Os códigos mais comuns são: 400 Requisição Inválida; 401 Não autorizado; 403 Proibido; 404 Não encontrado.
+
 - **Classe de status 5xx –** **ERRO DO SERVIDOR:** indica que, por um erro do servidor, a sua solicitação não pode ser atendida. Na maioria das vezes está relacionada a permissões dos arquivos ou pastas de software. Os códigos mais comuns são: 500 Erro interno do servidor; 502 Bad Gateway.
 
+  
 
-
-# REFERÊNCIAS 
+<h1> <a name = "references"></a>REFERÊNCIAS </h1>
 
 https://medium.com/cuidados-integrais/como-a-internet-funciona-2936e6c7053e 
 
