@@ -2,7 +2,7 @@
 
 ## Minhas anotações sobre a Internet e a Web :globe_with_meridians:
 
-Referências utilizadas para o desenvolvimento dessas anotações estão disponíveis [aqui](references).
+Referências utilizadas para o desenvolvimento dessas anotações estão disponíveis [aqui](#references).
 
 # ÍNDICE
 
